@@ -13,5 +13,8 @@
     "inquirer": "^6.2.1",
     "log-symbols": "^2.2.0",
     "ora": "^3.0.0"
+  },
+  "bin": {
+    "gli": "index.js"
   }
 }
