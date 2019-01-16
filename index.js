@@ -7,6 +7,8 @@ const inquirer = require("inquirer");
 const handlebars = require("handlebars");
 const fs = require("fs");
 const ora = require("ora");
+const chalk = require("chalk");
+const symbols = require("log-symbols");
 
 program
   .version("1.0.0", "-v, --version")
@@ -42,9 +44,10 @@ program
               const content = fs.readFileSync(fileName).toString();
               const result = handlebars.compile(content)(meta);
               fs.writeFileSync(fileName, result);
+              console.log(symbols.success, chalk.green("项目初始化完成"));
             } else {
               spinner.fail();
-              console.log(`拉取远程仓库失败${err}`);
+              console.log(symbols.error, chalk.red(`拉取远程仓库失败${err}`));
             }
           }
         );
