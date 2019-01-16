@@ -1,6 +1,6 @@
 {
-  "name": "gli",
-  "version": "1.0.0",
+  "name": "ds-gli",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "https://git.datatub.com/Uranus/gli.git",
   "author": "youjie <youjie@hudongpai.com>",
