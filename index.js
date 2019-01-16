@@ -46,9 +46,11 @@ program
                 author: answers.author
               };
               const fileName = `${name}/package.json`;
-              const content = fs.readFileSync(fileName).toString();
-              const result = handlebars.compile(content)(meta);
-              fs.writeFileSync(fileName, result);
+              if (fs.existsSync(fileName)) {
+                const content = fs.readFileSync(fileName).toString();
+                const result = handlebars.compile(content)(meta);
+                fs.writeFileSync(fileName, result);
+              }
               console.log(symbols.success, chalk.green("项目初始化完成"));
             } else {
               spinner.fail();
