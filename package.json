@@ -1,5 +1,5 @@
 {
-  "name": "ds-gli",
+  "name": "ds-cli",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "https://git.datatub.com/Uranus/gli.git",
@@ -15,6 +15,6 @@
     "ora": "^3.0.0"
   },
   "bin": {
-    "gli": "index.js"
+    "ds": "index.js"
   }
 }
