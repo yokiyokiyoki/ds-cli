@@ -30,6 +30,7 @@ program
           { clone: true },
           err => {
             const spinner = ora("正在下载模板...");
+            spinner.start();
             if (!err) {
               spinner.succeed();
               const meta = {
