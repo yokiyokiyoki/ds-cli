@@ -1,5 +1,5 @@
 {
-  "name": "ds-cli",
+  "name": "@datastory/ds-cli",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "https://git.datatub.com/Uranus/gli.git",

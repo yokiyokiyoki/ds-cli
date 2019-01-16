@@ -14,5 +14,5 @@
 
 # 安装
 
-- npm i ds-cli -g 或者 yarn global add ds-cli
+- npm i @datastory/ds-cli -g 或者 yarn global add ds-cli
 - ds init [文件名]
