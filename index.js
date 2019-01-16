@@ -6,6 +6,7 @@ const download = require("download-git-repo");
 const inquirer = require("inquirer");
 const handlebars = require("handlebars");
 const fs = require("fs");
+const ora = require("ora");
 
 program
   .version("1.0.0", "-v, --version")
@@ -28,8 +29,9 @@ program
           name,
           { clone: true },
           err => {
+            const spinner = ora("正在下载模板...");
             if (!err) {
-              console.log("拉取成功");
+              spinner.succeed();
               const meta = {
                 name,
                 description: answers.description,
@@ -40,6 +42,7 @@ program
               const result = handlebars.compile(content)(meta);
               fs.writeFileSync(fileName, result);
             } else {
+              spinner.fail();
               console.log(`拉取远程仓库失败${err}`);
             }
           }
