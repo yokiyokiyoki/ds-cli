@@ -14,6 +14,11 @@ program
   .version("1.0.0", "-v, --version")
   .command("init <name>")
   .action(name => {
+    if (fs.existsSync(name)) {
+      // 错误提示项目已存在，避免覆盖原有项目
+      console.log(symbols.error, chalk.red("项目已存在"));
+      return;
+    }
     inquirer
       .prompt([
         {
