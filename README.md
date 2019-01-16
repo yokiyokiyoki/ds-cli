@@ -11,3 +11,7 @@
 # 处理命令行
 
 - package.json 中的 bin 字段可以定义命令名和关联的执行文件
+
+# 安装
+
+npm i ds-gli -g
