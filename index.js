@@ -11,7 +11,7 @@ const chalk = require("chalk");
 const symbols = require("log-symbols");
 
 program
-  .version("1.0.0", "-v, --version")
+  .version("0.0.1", "-v, --version")
   .command("init <name>")
   .action(name => {
     if (fs.existsSync(name)) {
