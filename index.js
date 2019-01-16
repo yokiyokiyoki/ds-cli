@@ -60,4 +60,5 @@ program
         );
       });
   });
+//解析命令行
 program.parse(process.argv);
