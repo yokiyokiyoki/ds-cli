@@ -12,7 +12,8 @@
     "handlebars": "^4.0.12",
     "inquirer": "^6.2.1",
     "log-symbols": "^2.2.0",
-    "ora": "^3.0.0"
+    "ora": "^3.0.0",
+    "ramda": "^0.26.1"
   },
   "bin": {
     "ds": "./bin/ds.js"
