@@ -86,7 +86,7 @@
     cmd
         .usage('<command>')
         .version(config.version)
-        .description('欢迎使用数说方舟组件开发工具');
+        .description('欢迎使用开发工具');
     cmd
         .command('init')
         .description('初始化组件模板')
@@ -97,7 +97,11 @@
         }
         return exec.apply(void 0, ['init'].concat(args));
     });
-    console.log(cmd.args);
+    cmd.command('help')
+        .description('查看帮助')
+        .action(function () { return cmd.help(); });
+    // 解析输入的参数
+    cmd.parse(process.argv);
     if (!cmd.args.length) {
         cmd.help();
     }
