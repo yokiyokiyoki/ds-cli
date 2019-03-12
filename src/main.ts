@@ -22,7 +22,8 @@ cmd
   .command('init')
   .description('初始化组件模板')
   .action((...args) => exec('init', ...args));
-
+console.log(cmd.args);
 if (!cmd.args.length) {
-    cmd.help();
+
+  cmd.help();
 }

@@ -42,6 +42,6 @@ export default {
     include: "node_modules/**",
     extensions: ['.js', '.ts']
     }),
-    uglify()
+    // uglify()
   ],
 };

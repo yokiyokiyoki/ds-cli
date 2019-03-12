@@ -97,6 +97,7 @@
         }
         return exec.apply(void 0, ['init'].concat(args));
     });
+    console.log(cmd.args);
     if (!cmd.args.length) {
         cmd.help();
     }
