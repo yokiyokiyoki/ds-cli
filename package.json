@@ -6,6 +6,7 @@
   "author": "youjie",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "chalk": "^2.4.2",
     "commander": "^2.19.0",
     "download-git-repo": "^1.1.0",
@@ -13,7 +14,8 @@
     "inquirer": "^6.2.1",
     "log-symbols": "^2.2.0",
     "ora": "^3.0.0",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "rimraf": "^2.6.3"
   },
   "bin": {
     "ds": "./bin/ds.js"
@@ -28,7 +30,9 @@
     "cz-customizable": "^5.3.0",
     "http-server": "^0.11.1",
     "rollup": "^1.1.0",
+    "rollup-plugin-commonjs": "^9.2.1",
     "rollup-plugin-typescript2": "^0.18.1",
+    "rollup-plugin-uglify": "^6.0.2",
     "tslint": "^5.12.0",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "^3.2.2"

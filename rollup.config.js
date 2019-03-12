@@ -1,5 +1,6 @@
 import typescript from "rollup-plugin-typescript2";
-
+import commonjs from 'rollup-plugin-commonjs'
+import { uglify } from 'rollup-plugin-uglify'
 export default {
   input: "src/main.ts",
   output: [
@@ -15,5 +16,32 @@ export default {
       format: "umd"
     }
   ],
-  plugins: [typescript()]
+  external: [
+    "commander",
+    'colors',
+    'rimraf',
+    'archiver',
+    'ora',
+    'chalk',
+    'child_process',
+    'assert',
+    'path',
+    'fs',
+    'util',
+    'os',
+    'events',
+    'axios',
+    'form-data',
+    'inquirer',
+    'querystring',
+    'download-git-repo'
+  ],
+  plugins: [
+    typescript(),
+    commonjs({
+    include: "node_modules/**",
+    extensions: ['.js', '.ts']
+    }),
+    uglify()
+  ],
 };
