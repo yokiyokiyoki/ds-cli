@@ -24,7 +24,6 @@ class Tool {
       });
     });
   }
-  
 
   /**
    * 执行 Shell 命令
@@ -35,12 +34,12 @@ class Tool {
     return new Promise((resolve, reject) => {
       exec(cmd, (err, stdout, stderr) => {
         if (err) {
-          reject({ type: 'shell', msg: stdout + stderr })
+          reject({ type: 'shell', msg: stdout + stderr });
         } else {
-          resolve(stdout)
+          resolve(stdout);
         }
-      })
-    })
+      });
+    });
   }
 
   /**
@@ -51,9 +50,9 @@ class Tool {
   ask(config: Questions): Promise<Answers> {
     return new Promise((resolve, reject) => {
       inquirer.prompt(config).then(answers => {
-        resolve(answers)
-      })
-    })
+        resolve(answers);
+      });
+    });
   }
 
   /**
@@ -61,14 +60,14 @@ class Tool {
    * @param options
    * @return {Promise<any>}
    */
-  ajax(options: AxiosRequestConfig): AxiosPromise {
+  request(options: AxiosRequestConfig): AxiosPromise {
     return new Promise((resolve, reject) => {
       axios(options).then((response) => {
-        resolve(response)
+        resolve(response);
       }).catch(err => {
-        reject({ type: 'ajax请求', msg: err })
-      })
-    })
+        reject({ type: 'ajax请求', msg: err });
+      });
+    });
   }
 }
 
