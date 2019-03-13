@@ -5,7 +5,7 @@ import inquirer, { Answers, Questions } from 'inquirer';
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 import chalk from 'chalk';
 
-class tool {
+class Tool {
     constructor() {
 
     }
@@ -35,3 +35,5 @@ class tool {
     }
   }
 }
+
+export default new Tool()
