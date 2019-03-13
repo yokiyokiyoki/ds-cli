@@ -6,7 +6,8 @@
 // 版本号处理
 const semver=require('semver');
 const path=require('path');
-const packageConfig = require('../../package.json');
+// 动态执行
+const packageConfig = require('../package.json');
 
 console.log(packageConfig);
 const chalk = require('chalk');

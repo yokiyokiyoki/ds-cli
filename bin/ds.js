@@ -193,7 +193,8 @@
   // 版本号处理
   var semver = require('semver');
   var path = require('path');
-  var packageConfig = require('../../package.json');
+  // 动态执行
+  var packageConfig = require('../package.json');
   console.log(packageConfig);
   var chalk$1 = require('chalk');
   var checkVersion = (function (done) { return __awaiter(_this, void 0, void 0, function () {
