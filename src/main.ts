@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const cmd = require('commander');
 const config = require('../package.json');
 
-import init from './lib/init';
+import init from './lib/init/init';
 
 const command= {
     init

@@ -56,21 +56,26 @@
         }
     }
 
+    var cmd = require('commander');
+    var exists = require('fs').existsSync;
     function init () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
         return __awaiter(this, void 0, void 0, function () {
+            var template, rawName;
             return __generator(this, function (_a) {
-                console.log(args);
+                template = cmd.args[0];
+                rawName = cmd.args[1];
+                console.log(args, cmd.args);
                 return [2 /*return*/];
             });
         });
     }
 
     var chalk = require('chalk');
-    var cmd = require('commander');
+    var cmd$1 = require('commander');
     var config = require('../package.json');
     var command = {
         init: init
@@ -83,11 +88,11 @@
         config.debug = args[0].debug;
         command[type].apply(command, args);
     }
-    cmd
+    cmd$1
         .usage('<command>')
         .version(config.version)
         .description('欢迎使用开发工具');
-    cmd
+    cmd$1
         .command('init')
         .description('初始化组件模板')
         .action(function () {
@@ -97,13 +102,13 @@
         }
         return exec.apply(void 0, ['init'].concat(args));
     });
-    cmd.command('help')
+    cmd$1.command('help')
         .description('查看帮助')
-        .action(function () { return cmd.help(); });
+        .action(function () { return cmd$1.help(); });
     // 解析输入的参数
-    cmd.parse(process.argv);
-    if (!cmd.args.length) {
-        cmd.help();
+    cmd$1.parse(process.argv);
+    if (!cmd$1.args.length) {
+        cmd$1.help();
     }
 
 }));

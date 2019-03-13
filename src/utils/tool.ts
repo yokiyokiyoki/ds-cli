@@ -36,4 +36,4 @@ class Tool {
   }
 }
 
-export default new Tool()
+export default new Tool();

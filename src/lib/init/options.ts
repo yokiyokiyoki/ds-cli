@@ -1,67 +1,67 @@
-//获取配置
-const Handlebars=require('handlebars')
-const path=require('path')
+// 获取配置
+const Handlebars=require('handlebars');
+const path=require('path');
 // 获取json和yaml metadata返回obj
-const metadata = require('read-metadata')
-const exists = require('fs').existsSync
+const metadata = require('read-metadata');
+const exists = require('fs').existsSync;
 
-//检查你输入的 app-name 是否符合 npm 包名命名规范
-const validateName = require('validate-npm-package-name')
+// 检查你输入的 app-name 是否符合 npm 包名命名规范
+const validateName = require('validate-npm-package-name');
 
-import getGitUser from './git-user'
+import getGitUser from './git-user';
 
 // 注册handlebars的helper辅助函数
-Handlebars.registerHelper('if_eq', function (a, b, opts) {
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
 return a === b
     ? opts.fn(this)
-    : opts.inverse(this)
-})
-  
-Handlebars.registerHelper('unless_eq', function (a, b, opts) {
+    : opts.inverse(this);
+});
+
+Handlebars.registerHelper('unless_eq', function(a, b, opts) {
 return a === b
     ? opts.inverse(this)
-    : opts.fn(this)
-})
+    : opts.fn(this);
+});
 
-export default function options(name,dir){
-    let opts=getMetadata(dir)
-    //设置name字段并检测name是否合法
-    setDefault(opts, 'name', name) 
-    setValidateName(opts) 
-    
+export default function options(name,dir) {
+    const opts=getMetadata(dir);
+    // 设置name字段并检测name是否合法
+    setDefault(opts, 'name', name);
+    setValidateName(opts);
+
     // 获取 name 和 email，用于生成 package.json 里面的 author 字段
-    const author = getGitUser()
+    const author = getGitUser();
     if (author) {
-        setDefault(opts, 'author', author)
+        setDefault(opts, 'author', author);
     }
 }
 
 /**
- * 
+ *
  * 获取meta files
  *
  * @param  {String} dir
  * @return {Object}
  */
 
-function getMetadata (dir) {
-    //获取模板目录下的meta，定制化需求
-    const json = path.join(dir, 'meta.json')
-    const js = path.join(dir, 'meta.js')
-    let opts = {}
+function getMetadata(dir) {
+    // 获取模板目录下的meta，定制化需求
+    const json = path.join(dir, 'meta.json');
+    const js = path.join(dir, 'meta.js');
+    let opts = {};
 
     if (exists(json)) {
-        //存在json的话，同步转换成obj
-        opts = metadata.sync(json)
+        // 存在json的话，同步转换成obj
+        opts = metadata.sync(json);
     } else if (exists(js)) {
-        const req = require(path.resolve(js))
+        const req = require(path.resolve(js));
         if (req !== Object(req)) {
-            throw new Error('meta.js 需要导出一个对象')
+            throw new Error('meta.js 需要导出一个对象');
         }
-        opts = req
+        opts = req;
     }
 
-    return opts
+    return opts;
 }
 
 /**
@@ -72,36 +72,36 @@ function getMetadata (dir) {
  * @param {String} val
  */
 
-function setDefault (opts, key, val) {
+function setDefault(opts, key, val) {
     if (opts.schema) {
-      opts.prompts = opts.schema
-      delete opts.schema
+      opts.prompts = opts.schema;
+      delete opts.schema;
     }
-    const prompts = opts.prompts || (opts.prompts = {})
+    const prompts = opts.prompts || (opts.prompts = {});
     if (!prompts[key] || typeof prompts[key] !== 'object') {
       prompts[key] = {
-        'type': 'string',
-        'default': val
-      }
+        type: 'string',
+        default: val
+      };
     } else {
-      prompts[key]['default'] = val
+      prompts[key].default = val;
     }
   }
 
-/** 
+/**
  * 验证npm包名
 */
-function setValidateName (opts) {
-    //获取包名name
-    const name = opts.prompts.name
-    const customValidate = name.validate
+function setValidateName(opts) {
+    // 获取包名name
+    const name = opts.prompts.name;
+    const customValidate = name.validate;
     name.validate = name => {
-      const its = validateName(name)
+      const its = validateName(name);
       if (!its.validForNewPackages) {
-        const errors = (its.errors || []).concat(its.warnings || [])
-        return 'Sorry, ' + errors.join(' and ') + '.'
+        const errors = (its.errors || []).concat(its.warnings || []);
+        return 'Sorry, ' + errors.join(' and ') + '.';
       }
-      if (typeof customValidate === 'function') return customValidate(name)
-      return true
-    }
+      if (typeof customValidate === 'function') return customValidate(name);
+      return true;
+    };
   }
