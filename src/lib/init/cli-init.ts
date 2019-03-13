@@ -9,6 +9,8 @@ export default async function(...args) {
     const rawName = args[1];  // 项目构建目录名
     const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
     const inPlace = !rawName || rawName === '.';  // 没写或者“.”，表示当前目录下构建项目
+    //如果在当前目录下构建项目,当前目录名为项目构建目录名，否则是当前目录下的子目录【rawName】为项目构建目录名
+    const name = inPlace ? path.relative('../', process.cwd()) : rawName  
     console.log(args,inPlace,args[0],args[1]);
     if (inPlace || exists(to)) {
         inquirer.prompt([{

@@ -3,7 +3,6 @@ import { exec } from 'child_process';
 import rm from 'rimraf';
 import inquirer, { Answers, Questions } from 'inquirer';
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
-import chalk from 'chalk';
 
 class Tool {
     constructor() {
@@ -25,14 +24,51 @@ class Tool {
       });
     });
   }
+  
+
   /**
-   * 全局打印错误
-   * @param msg
+   * 执行 Shell 命令
+   * @param cmd
+   * @return {Promise<any>}
    */
-  printError(err: Error ) {
-    if (err instanceof Error) {
-      console.log('\n  ' + chalk.red((err as Error).toString()) + '\n');
-    }
+  shell(cmd: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      exec(cmd, (err, stdout, stderr) => {
+        if (err) {
+          reject({ type: 'shell', msg: stdout + stderr })
+        } else {
+          resolve(stdout)
+        }
+      })
+    })
+  }
+
+  /**
+   * 通过 inquirer 询问用户
+   * @param config
+   * @return {Promise<any>}
+   */
+  ask(config: Questions): Promise<Answers> {
+    return new Promise((resolve, reject) => {
+      inquirer.prompt(config).then(answers => {
+        resolve(answers)
+      })
+    })
+  }
+
+  /**
+   * ajax 请求接口
+   * @param options
+   * @return {Promise<any>}
+   */
+  ajax(options: AxiosRequestConfig): AxiosPromise {
+    return new Promise((resolve, reject) => {
+      axios(options).then((response) => {
+        resolve(response)
+      }).catch(err => {
+        reject({ type: 'ajax请求', msg: err })
+      })
+    })
   }
 }
 
