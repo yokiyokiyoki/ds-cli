@@ -3,8 +3,9 @@ const exists = require('fs').existsSync;
 const inquirer = require('inquirer');
 const path=require('path');
 import logger from '../../utils/logger';
+import checkVersion from "../../utils"
 
-export default async function(...args) {
+export default function(...args) {
     const template = args[0];  // 模板名称
     const rawName = args[1];  // 项目构建目录名
     const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
@@ -21,11 +22,15 @@ export default async function(...args) {
             name: 'ok'
         }]).then(answers => {
             if (answers.ok) {
-                // run()
+                run()
                 console.log(answers);
             }
             }).catch(logger.fatal);
     } else {
-        // run()
+        run()
     }
+}
+
+function run(){
+    
 }

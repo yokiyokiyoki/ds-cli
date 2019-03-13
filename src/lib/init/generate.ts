@@ -6,6 +6,7 @@ const async = require('async');
 const render = require('consolidate').handlebars.render;
 const path = require('path');
 const multimatch = require('multimatch');
+import inquirer, { Answers, Questions } from 'inquirer';
 
 // 注册handlebars的helper辅助函数
 Handlebars.registerHelper('if_eq', function(a, b, opts) {
@@ -44,7 +45,7 @@ function askQuestionsFirst(prompts) {
     const data = {};
     return new Promise((resolve) => {
         ask(prompts, data, () => {
-        resolve(data);
+            resolve(data);
         });
     });
 }

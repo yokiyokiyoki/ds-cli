@@ -16,7 +16,8 @@
     "metalsmith": "^2.3.0",
     "ora": "^3.0.0",
     "ramda": "^0.26.1",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "semver": "^5.6.0"
   },
   "bin": {
     "ds": "./bin/ds.js"
@@ -43,5 +44,8 @@
     "lint:fix": "tslint --fix -c tslint.json \"src/**/*.ts\"",
     "clean": "rm -rf ./bin && mkdir bin",
     "build": "yarn lint:fix && yarn clean && rollup --config"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }
