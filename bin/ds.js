@@ -58,17 +58,34 @@
 
     var cmd = require('commander');
     var exists = require('fs').existsSync;
+    var inquirer = require('inquirer');
+    var path = require('path');
     function init () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
         return __awaiter(this, void 0, void 0, function () {
-            var template, rawName;
+            var rawName, to, inPlace;
             return __generator(this, function (_a) {
-                template = cmd.args[0];
-                rawName = cmd.args[1];
-                console.log(args, cmd.args);
+                rawName = args[1];
+                to = path.resolve(rawName || '.');
+                inPlace = !rawName || rawName === '.';
+                console.log(args, inPlace);
+                if (inPlace || exists(to)) {
+                    inquirer.prompt([{
+                            type: 'confirm',
+                            message: inPlace
+                                ? '在当前目录生成模板'
+                                : '目录已存在，是否继续？',
+                            name: 'ok'
+                        }]).then(function (answers) {
+                        if (answers.ok) {
+                            // run()
+                            console.log(answers);
+                        }
+                    })["catch"]();
+                }
                 return [2 /*return*/];
             });
         });
