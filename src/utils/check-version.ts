@@ -1,4 +1,4 @@
-/**
+/***
  * 检查一下node版本
  * 获取一下ds-cli版本
  */
@@ -6,7 +6,7 @@
 // 版本号处理
 const semver=require('semver');
 const path=require('path');
-const packageConfig = require(path.resolve(__dirname)+'./package.json');
+const packageConfig = require('../../package.json');
 
 console.log(packageConfig);
 const chalk = require('chalk');
