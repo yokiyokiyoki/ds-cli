@@ -9,7 +9,7 @@ export default async function(...args) {
     const rawName = args[1];  // 项目构建目录名
     const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
     const inPlace = !rawName || rawName === '.';  // 没写或者“.”，表示当前目录下构建项目
-    console.log(args,inPlace);
+    console.log(args,inPlace,args[0],args[1]);
     if (inPlace || exists(to)) {
         inquirer.prompt([{
             type: 'confirm',
@@ -22,7 +22,9 @@ export default async function(...args) {
                 // run()
                 console.log(answers);
             }
-            }).catch();
+            }).catch((e)=> {
+                console.log(e);
+            });
     } else {
         // run()
     }

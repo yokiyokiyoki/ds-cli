@@ -71,7 +71,7 @@
                 rawName = args[1];
                 to = path.resolve(rawName || '.');
                 inPlace = !rawName || rawName === '.';
-                console.log(args, inPlace);
+                console.log(args, inPlace, args[0], args[1]);
                 if (inPlace || exists(to)) {
                     inquirer.prompt([{
                             type: 'confirm',
@@ -84,7 +84,9 @@
                             // run()
                             console.log(answers);
                         }
-                    })["catch"]();
+                    })["catch"](function (e) {
+                        console.log(e);
+                    });
                 }
                 return [2 /*return*/];
             });
