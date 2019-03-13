@@ -25,17 +25,17 @@ export default async (done)=> {
         }
     );
     if(res) {
-        const latestVersion = res['dist-tags'].latest;
-        const localVersion = packageConfig.version;
-        if (semver.lt(localVersion, latestVersion)) {
-            console.log(chalk.yellow('  有一个新的版本'));
-            console.log();
-            console.log('  最新的是:    ' + chalk.green(latestVersion));
-            console.log('  下载的是: ' + chalk.red(localVersion));
-            console.log();
-        }
+        // const latestVersion = res['dist-tags'].latest;
+        // const localVersion = packageConfig.version;
+        // if (semver.lt(localVersion, latestVersion)) {
+        //     console.log(chalk.yellow('  有一个新的版本'));
+        //     console.log();
+        //     console.log('  最新的是:    ' + chalk.green(latestVersion));
+        //     console.log('  下载的是: ' + chalk.red(localVersion));
+        //     console.log();
+        // }
     }
-    console.log(res);
+    console.log(res['dist-tags'],res);
     // 执行回调
     done();
 };

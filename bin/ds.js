@@ -198,7 +198,7 @@
   console.log(packageConfig);
   var chalk$1 = require('chalk');
   var checkVersion = (function (done) { return __awaiter(_this, void 0, void 0, function () {
-      var res, latestVersion, localVersion;
+      var res;
       return __generator(this, function (_a) {
           switch (_a.label) {
               case 0:
@@ -211,18 +211,7 @@
                       })];
               case 1:
                   res = _a.sent();
-                  if (res) {
-                      latestVersion = res['dist-tags'].latest;
-                      localVersion = packageConfig.version;
-                      if (semver.lt(localVersion, latestVersion)) {
-                          console.log(chalk$1.yellow('  有一个新的版本'));
-                          console.log();
-                          console.log('  最新的是:    ' + chalk$1.green(latestVersion));
-                          console.log('  下载的是: ' + chalk$1.red(localVersion));
-                          console.log();
-                      }
-                  }
-                  console.log(res);
+                  console.log(res['dist-tags'], res);
                   // 执行回调
                   done();
                   return [2 /*return*/];
