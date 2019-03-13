@@ -185,14 +185,16 @@
   }());
   var tool = new Tool();
 
-  var _this = undefined;
   /**
    * 检查一下node版本
    * 获取一下ds-cli版本
-  */
+   */
+  var _this = undefined;
   // 版本号处理
   var semver = require('semver');
-  var packageConfig = require('../../package.json');
+  var path = require('path');
+  var packageConfig = require(path.resolve(__dirname) + './package.json');
+  console.log(packageConfig);
   var chalk$1 = require('chalk');
   var checkVersion = (function (done) { return __awaiter(_this, void 0, void 0, function () {
       var res;
@@ -219,17 +221,17 @@
   var cmd = require('commander');
   var exists = require('fs').existsSync;
   var inquirer = require('inquirer');
-  var path = require('path');
+  var path$1 = require('path');
   function init () {
       var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
           args[_i] = arguments[_i];
       }
       var rawName = args[1]; // 项目构建目录名
-      var to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
+      var to = path$1.resolve(rawName || '.'); // 项目构建目录的绝对路径
       var inPlace = !rawName || rawName === '.'; // 没写或者“.”，表示当前目录下构建项目
       // 如果在当前目录下构建项目,当前目录名为项目构建目录名，否则是当前目录下的子目录【rawName】为项目构建目录名
-      var name = inPlace ? path.relative('../', process.cwd()) : rawName;
+      var name = inPlace ? path$1.relative('../', process.cwd()) : rawName;
       console.log(args, inPlace, args[0], args[1]);
       if (inPlace || exists(to)) {
           inquirer.prompt([{
