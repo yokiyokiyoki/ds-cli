@@ -2,9 +2,9 @@ const cmd = require('commander');
 const exists = require('fs').existsSync;
 const inquirer = require('inquirer');
 const path=require('path');
+import logger from '../../utils/logger';
 
 export default async function(...args) {
-
     const template = args[0];  // 模板名称
     const rawName = args[1];  // 项目构建目录名
     const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
@@ -22,9 +22,7 @@ export default async function(...args) {
                 // run()
                 console.log(answers);
             }
-            }).catch((e)=> {
-                console.log(e);
-            });
+            }).catch(logger.fatal);
     } else {
         // run()
     }

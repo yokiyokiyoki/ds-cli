@@ -56,6 +56,62 @@
         }
     }
 
+    var chalk = require('chalk');
+    var format = require('util').format;
+    /**
+     * Prefix.
+     */
+    var prefix = '   ds-cli';
+    var sep = chalk.gray('·');
+    /**
+     * 正常
+     *
+     * @param {String} message
+     */
+    function log() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var msg = format.apply(format, args);
+        console.log(chalk.white(prefix), sep, msg);
+    }
+    /**
+     * 打印错误消息并退出
+     *
+     * @param {String} message
+     */
+    function fatal() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (args[0] instanceof Error)
+            args[0] = args[0].message.trim();
+        var msg = format.apply(format, args);
+        console.error(chalk.red(prefix), sep, msg);
+        // 退出当前进程
+        process.exit(1);
+    }
+    /**
+     * 打印成功
+     *
+     * @param {String} message
+     */
+    function success() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var msg = format.apply(format, args);
+        console.log(chalk.green(prefix), sep, msg);
+    }
+    var logger = {
+        log: log,
+        fatal: fatal,
+        success: success
+    };
+
     var cmd = require('commander');
     var exists = require('fs').existsSync;
     var inquirer = require('inquirer');
@@ -84,16 +140,14 @@
                             // run()
                             console.log(answers);
                         }
-                    })["catch"](function (e) {
-                        console.log(e);
-                    });
+                    })["catch"](logger.fatal);
                 }
                 return [2 /*return*/];
             });
         });
     }
 
-    var chalk = require('chalk');
+    var chalk$1 = require('chalk');
     var cmd$1 = require('commander');
     var config = require('../package.json');
     var command = {
