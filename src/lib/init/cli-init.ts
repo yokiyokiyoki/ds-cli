@@ -23,7 +23,6 @@ export default function(...args) {
         }]).then(answers => {
             if (answers.ok) {
                 run();
-                console.log(answers);
             }
             }).catch(logger.fatal);
     } else {

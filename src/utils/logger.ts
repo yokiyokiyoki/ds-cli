@@ -5,7 +5,7 @@ const format = require('util').format;
  * Prefix.
  */
 
-const prefix = '   ds-cli';
+const prefix = 'ds-cli';
 const sep = chalk.gray('·');
 
 /**

@@ -14,7 +14,7 @@
   /**
    * Prefix.
    */
-  var prefix = '   ds-cli';
+  var prefix = 'ds-cli';
   var sep = chalk.gray('·');
   /**
    * 正常
@@ -198,7 +198,7 @@
   console.log(packageConfig);
   var chalk$1 = require('chalk');
   var checkVersion = (function (done) { return __awaiter(_this, void 0, void 0, function () {
-      var res;
+      var res, latestVersion, localVersion;
       return __generator(this, function (_a) {
           switch (_a.label) {
               case 0:
@@ -206,12 +206,23 @@
                       return [2 /*return*/, console.log(chalk$1.red(' 你的node版本必须 >=' + packageConfig.engines.node + '.x 才能使用ds-cli'))];
                   }
                   return [4 /*yield*/, tool.request({
-                          url: 'https://registry.npmjs.org/vue-cli',
+                          url: 'https://registry.npmjs.org/@datastory/ds-cli',
                           method: 'GET'
                       })];
               case 1:
                   res = _a.sent();
-                  console.log(res['dist-tags'], res);
+                  if (res.status === 200) {
+                      latestVersion = res.data['dist-tags'].latest;
+                      localVersion = packageConfig.version;
+                      if (semver.lt(localVersion, latestVersion)) {
+                          console.log(chalk$1.yellow('有一个新的版本'));
+                          console.log();
+                          console.log('最新的是:' + chalk$1.green(latestVersion));
+                          console.log('下载的是:' + chalk$1.red(localVersion));
+                          console.log();
+                      }
+                  }
+                  console.log(res, res.data);
                   // 执行回调
                   done();
                   return [2 /*return*/];
@@ -244,7 +255,6 @@
               }]).then(function (answers) {
               if (answers.ok) {
                   run();
-                  console.log(answers);
               }
           })["catch"](logger.fatal);
       }

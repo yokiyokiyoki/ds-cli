@@ -20,22 +20,22 @@ export default async (done)=> {
         ));
     }
     const res=await tool.request({
-        url: 'https://registry.npmjs.org/vue-cli',
+        url: 'https://registry.npmjs.org/@datastory/ds-cli',
         method: 'GET'
         }
     );
-    if(res) {
-        // const latestVersion = res['dist-tags'].latest;
-        // const localVersion = packageConfig.version;
-        // if (semver.lt(localVersion, latestVersion)) {
-        //     console.log(chalk.yellow('  有一个新的版本'));
-        //     console.log();
-        //     console.log('  最新的是:    ' + chalk.green(latestVersion));
-        //     console.log('  下载的是: ' + chalk.red(localVersion));
-        //     console.log();
-        // }
+    if(res.status===200) {
+        const latestVersion = res.data['dist-tags'].latest;
+        const localVersion = packageConfig.version;
+        if (semver.lt(localVersion, latestVersion)) {
+            console.log(chalk.yellow('有一个新的版本'));
+            console.log();
+            console.log('最新的是:' + chalk.green(latestVersion));
+            console.log('下载的是:' + chalk.red(localVersion));
+            console.log();
+        }
     }
-    console.log(res['dist-tags'],res);
+    console.log(res,res.data);
     // 执行回调
     done();
 };
