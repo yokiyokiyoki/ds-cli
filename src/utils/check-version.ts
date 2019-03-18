@@ -28,10 +28,10 @@ export default async (done)=> {
         const latestVersion = res.data['dist-tags'].latest;
         const localVersion = packageConfig.version;
         if (semver.lt(localVersion, latestVersion)) {
-            console.log(chalk.yellow('有一个新的版本'));
+            console.log(chalk.yellow('报告!有一个新的ds-cli版本'));
             console.log();
-            console.log('最新的是:' + chalk.green(latestVersion));
-            console.log('下载的是:' + chalk.red(localVersion));
+            console.log('现在最新的是:' + chalk.green(latestVersion));
+            console.log('你下载的是:' + chalk.red(localVersion));
             console.log();
         }
     }
