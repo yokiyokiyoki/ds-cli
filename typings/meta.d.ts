@@ -8,4 +8,5 @@ interface meta{
     complete?:any
     filters?:obj
     prompts?:any
+    completeMessage?:string
 }

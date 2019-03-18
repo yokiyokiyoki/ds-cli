@@ -2,11 +2,11 @@ const cmd = require('commander');
 const exists = require('fs').existsSync;
 const inquirer = require('inquirer');
 const path=require('path');
-import localPath from "./local-path"
+import localPath from './local-path';
 import logger from '../../utils/logger';
 import checkVersion from '../../utils/check-version';
-import downloadAndGenerate from "./downloadAndGenerate"
-import generate from './generate'
+import downloadAndGenerate from './downloadAndGenerate';
+import generate from './generate';
 
 export default function(...args) {
     const template = args[0];  // 模板名称
@@ -33,26 +33,24 @@ export default function(...args) {
         run();
     }
 
-
     function run() {
-        if(localPath.isLocalPath(template)){
-            //支持本地文件模板，如ds init /usr/webpack test
-            const templatePath=localPath.getTemplatePath(template)
-            if(path.exists(templatePath)){
+        if(localPath.isLocalPath(template)) {
+            // 支持本地文件模板，如ds init /usr/webpack test
+            const templatePath=localPath.getTemplatePath(template);
+            if(path.exists(templatePath)) {
                 generate(name, templatePath, to, err => {
-                    if (err) logger.fatal(err)
-                    logger.success(`生成${name}`)
-                })
-            }else{
-                logger.fatal(`本地模板${template}没有找到`)
+                    if (err) logger.fatal(err);
+                    logger.success(`生成${name}`);
+                });
+            } else {
+                logger.fatal(`本地模板${template}没有找到`);
             }
-        }else{
+        } else {
             checkVersion(()=> {
-                //例子ds init webpack testname
-                const gitTemplateUrl = `https://git.datatub.com:Uranus/ds-cli-${template}-template#master`
-                downloadAndGenerate(gitTemplateUrl,template,to,name)
+                // 例子ds init webpack testname
+                const gitTemplateUrl = `https://git.datatub.com:Uranus/ds-cli-${template}-template#master`;
+                downloadAndGenerate(gitTemplateUrl,template,to,name);
             });
         }
     }
 }
-
