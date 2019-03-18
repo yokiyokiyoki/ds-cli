@@ -11,7 +11,7 @@ import generate from './generate'
 export default function(...args) {
     const template = args[0];  // 模板名称
     const rawName = args[1];  // 项目构建目录名
-    const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径
+    const to = path.resolve(rawName || '.'); // 项目构建目录的绝对路径(当前目录)
     const inPlace = !rawName || rawName === '.';  // 没写或者“.”，表示当前目录下构建项目
     // 如果在当前目录下构建项目,当前目录名为项目构建目录名，否则是当前目录下的子目录【rawName】为项目构建目录名
     // process.cwd()是当前工作目录
@@ -41,7 +41,6 @@ export default function(...args) {
             if(path.exists(templatePath)){
                 generate(name, templatePath, to, err => {
                     if (err) logger.fatal(err)
-                    console.log()
                     logger.success(`生成${name}`)
                 })
             }else{
