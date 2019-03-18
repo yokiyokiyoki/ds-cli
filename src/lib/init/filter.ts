@@ -6,7 +6,7 @@
 // 字符匹配工具
 const match = require('minimatch');
 // 返回某作用下表达式的值
-const evaluate = require('./eval');
+import evaluate from "./eval"
 /**
  * files 模板内的所有文件
  * filters meta.js或者meta.json的filters字段
