@@ -31,7 +31,7 @@ export default async function generate(src: string, templateType: number, done) 
 
     const metalsmith = Metalsmith(path.join(src, 'template'));
 
-    const data = await askQuestionsFirst(opts.prompts);
+    
 
     Object.assign(metalsmith.metadata(), data);
 
@@ -41,11 +41,3 @@ export default async function generate(src: string, templateType: number, done) 
     });
 }
 
-function askQuestionsFirst(prompts) {
-    const data = {};
-    return new Promise((resolve) => {
-        ask(prompts, data, () => {
-            resolve(data);
-        });
-    });
-}
