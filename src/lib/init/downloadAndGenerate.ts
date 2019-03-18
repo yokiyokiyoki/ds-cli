@@ -20,7 +20,7 @@ export default function downloadAndGenerate (templateUrl,template,to,name) {
     if (exists(template)) rm(template)  //是否存在该模板，存在就删除
       
     download(templateUrl,template, { clone:true }, err => {
-      spinner.stop() //隐藏加载状态
+      spinner.stop() //回调完了隐藏加载状态
       //如果有错误，打印错误日志
       if (err) logger.fatal('拉取远程仓库失败 ' + template + ': ' + err.message.trim())
       //渲染模板

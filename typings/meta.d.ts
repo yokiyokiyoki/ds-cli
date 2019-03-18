@@ -4,4 +4,7 @@ interface obj{
 
 interface meta{
     helpers?:obj
+    metalsmith?:obj
+    complete?:any,
+    filters?:obj
 }
