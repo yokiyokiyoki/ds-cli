@@ -5,6 +5,7 @@ interface obj{
 interface meta{
     helpers?:obj
     metalsmith?:obj
-    complete?:any,
+    complete?:any
     filters?:obj
+    prompts?:any
 }
