@@ -409,14 +409,27 @@
         })["catch"](done);
     }
 
+    var chalk$2 = require('chalk');
+    /**
+     * Evaluate an expression in meta.json in the context of
+     *  在data的作用域执行exp表达式并返回其执行得到的值
+     */
+    function evaluate(exp, data) {
+        var fn = new Function('data', 'with (data) { return ' + exp + '}');
+        try {
+            return fn(data);
+        }
+        catch (e) {
+            console.error(chalk$2.red('执行meta的filter的错误' + exp));
+        }
+    }
+
     /**
      * 根据metalsmith.metadata()删除一些不需要的模板文件，而metalsmith.metadata()主要在ask.ts中改变的
      * 也就是说ask.ts中获取到用户的需求。
     */
     // 字符匹配工具
     var match = require('minimatch');
-    // 返回某作用下表达式的值
-    var evaluate = require('./eval');
     /**
      * files 模板内的所有文件
      * filters meta.js或者meta.json的filters字段
@@ -447,7 +460,7 @@
         done();
     });
 
-    var chalk$2 = require('chalk');
+    var chalk$3 = require('chalk');
     var Metalsmith = require('metalsmith');
     var Handlebars = require('handlebars');
     var async$1 = require('async');
@@ -473,26 +486,25 @@
         return __awaiter(this, void 0, void 0, function () {
             var opts, metalsmith, data, helpers;
             return __generator(this, function (_a) {
-                opts = options(name, templatePath) //获取meta.js配置
-                ;
+                opts = options(name, templatePath);
                 metalsmith = Metalsmith(path$3.join(templatePath, 'template'));
                 data = Object.assign(metalsmith.metadata(), {
                     destDirName: name,
-                    inPlace: to === process.cwd(),
+                    inPlace: to === process.cwd() // 是否是当前目录
                 });
                 // 注册配置对象中的helper
                 opts.helpers && Object.keys(opts.helpers).map(function (key) {
                     Handlebars.registerHelper(key, opts.helpers[key]);
                 });
-                helpers = { chalk: chalk$2, logger: logger };
-                //配置对象是否有before函数，是则执行
+                helpers = { chalk: chalk$3, logger: logger };
+                // 配置对象是否有before函数，是则执行
                 if (opts.metalsmith && typeof opts.metalsmith.before === 'function') {
                     opts.metalsmith.before(metalsmith, opts, helpers);
                 }
-                metalsmith.use(askQuestions(opts.prompts)) //询问问题
-                    .use(filterFiles(opts.filters)) //过滤文件
-                    .use(renderTemplateFiles()); //渲染模板文件
-                //配置对象是否有after函数，是则执行
+                metalsmith.use(askQuestions(opts.prompts)) // 询问问题
+                    .use(filterFiles(opts.filters)) // 过滤文件
+                    .use(renderTemplateFiles()); // 渲染模板文件
+                // 配置对象是否有after函数，是则执行
                 if (typeof opts.metalsmith === 'function') {
                     opts.metalsmith(metalsmith, opts, helpers);
                 }
@@ -505,12 +517,12 @@
                     .build(function (err, files) {
                     done(err);
                     if (typeof opts.complete === 'function') {
-                        //配置对象有complete函数则执行
-                        var helpers_1 = { chalk: chalk$2, logger: logger, files: files };
+                        // 配置对象有complete函数则执行
+                        var helpers_1 = { chalk: chalk$3, logger: logger, files: files };
                         opts.complete(data, helpers_1);
                     }
                     else {
-                        //配置对象有completeMessage，执行logMessage函数
+                        // 配置对象有completeMessage，执行logMessage函数
                         logMessage(opts.completeMessage, data);
                     }
                 });
@@ -542,18 +554,18 @@
     */
     function renderTemplateFiles() {
         return function (files, metalsmith, done) {
-            var keys = Object.keys(files); //获取files的所有key
-            var metalsmithMetadata = metalsmith.metadata(); //获取metalsmith的所有变量
-            //异步处理所有files
+            var keys = Object.keys(files); // 获取files的所有key
+            var metalsmithMetadata = metalsmith.metadata(); // 获取metalsmith的所有变量
+            // 异步处理所有files
             async$1.each(keys, function (file, next) {
-                //获取文件的文本内容
+                // 获取文件的文本内容
                 var str = files[file].contents.toString();
                 // do not attempt to render files that do not have mustaches
-                //跳过不符合handlebars语法的file
+                // 跳过不符合handlebars语法的file
                 if (!/{{([^{}]+)}}/g.test(str)) {
                     return next();
                 }
-                //渲染文件
+                // 渲染文件
                 render(str, metalsmithMetadata, function (err, res) {
                     if (err) {
                         err.message = "[" + file + "] " + err.message;
@@ -567,13 +579,13 @@
     }
     function logMessage(message, data) {
         if (!message)
-            return; //没有message直接退出函数
+            return; // 没有message直接退出函数
         render(message, data, function (err, res) {
             if (err) {
-                console.error('\n模板渲染完成出错 ' + err.message.trim()); //渲染错误打印错误信息
+                console.error('\n模板渲染完成出错 ' + err.message.trim()); // 渲染错误打印错误信息
             }
             else {
-                //渲染成功打印最终渲染的结果
+                // 渲染成功打印最终渲染的结果
                 console.log('\n' + res.split(/\r?\n/g).map(function (line) { return '   ' + line; }).join('\n'));
             }
         });
@@ -584,7 +596,7 @@
     var path$4 = require('path'); // node自带的path模块，用于拼接路径
     var ora = require('ora');
     var rm = require('rimraf').sync;
-    var chalk$3 = require('chalk');
+    var chalk$4 = require('chalk');
     // 获取用户根目录，拼接一下用来存储下载的模板，然后用构建工具生成我们想要的模板
     var home = require('user-home');
     function downloadAndGenerate(templateUrl, template, to, name) {
@@ -665,7 +677,7 @@
         }
     }
 
-    var chalk$4 = require('chalk');
+    var chalk$5 = require('chalk');
     var cmd$1 = require('commander');
     var config = require('../package.json');
     var command = {
