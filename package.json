@@ -1,6 +1,6 @@
 {
   "name": "@datastory/ds-cli",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "index.js",
   "repository": "https://git.datatub.com/Uranus/gli.git",
   "author": "youjie",

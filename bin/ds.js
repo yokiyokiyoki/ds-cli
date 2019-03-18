@@ -26,10 +26,10 @@
     var chalk = require('chalk');
     var format = require('util').format;
     /**
-     * Prefix.
+     * 加个前缀好识别
      */
     var prefix = 'ds-cli';
-    var sep = chalk.gray('·');
+    var sep = chalk.gray('······');
     /**
      * 正常
      *
@@ -229,10 +229,10 @@
                         latestVersion = res.data['dist-tags'].latest;
                         localVersion = packageConfig.version;
                         if (semver.lt(localVersion, latestVersion)) {
-                            console.log(chalk$1.yellow('有一个新的版本'));
+                            console.log(chalk$1.yellow('报告!有一个新的ds-cli版本'));
                             console.log();
-                            console.log('最新的是:' + chalk$1.green(latestVersion));
-                            console.log('下载的是:' + chalk$1.red(localVersion));
+                            console.log('现在最新的是:' + chalk$1.green(latestVersion));
+                            console.log('你下载的是:' + chalk$1.red(localVersion));
                             console.log();
                         }
                     }
@@ -310,6 +310,7 @@
     }
     /**
      * 向meta配置对象中添加一下默认字段
+     * 设置默认字段(如name,author)
      *
      * @param {Object} opts
      * @param {String} key
@@ -420,7 +421,7 @@
             return fn(data);
         }
         catch (e) {
-            console.error(chalk$2.red('执行meta的filter的错误' + exp));
+            console.error(chalk$2.red('执行meta的filter字段时候的错误' + exp));
         }
     }
 
@@ -601,7 +602,7 @@
     var home = require('user-home');
     function downloadAndGenerate(templateUrl, template, to, name) {
         // ds init webpack(template) testname(name)
-        var spinner = ora('下载模板ing...');
+        var spinner = ora('正在努力下载模板ing...');
         spinner.start(); // 显示加载状态
         if (exists$1(template))
             rm(template); // 是否存在该模板，存在就删除
@@ -614,7 +615,7 @@
             generate(name, template, to, function (err) {
                 if (err)
                     logger.fatal(err);
-                logger.success('生成', name);
+                logger.success("\u751F\u6210" + name + "\u6587\u4EF6\u5939");
             });
         });
     }
@@ -659,7 +660,7 @@
                     generate(name, templatePath, to, function (err) {
                         if (err)
                             logger.fatal(err);
-                        logger.success("\u751F\u6210" + name);
+                        logger.success("\u751F\u6210" + name + "\u6587\u4EF6\u5939");
                     });
                 }
                 else {
