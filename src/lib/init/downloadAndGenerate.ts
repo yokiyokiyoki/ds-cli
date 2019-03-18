@@ -12,19 +12,20 @@ const home=require('user-home')
 import logger from "../../utils/logger"
 import generate from './generate'
 
-export default function downloadAndGenerate (template,name) {
+export default function downloadAndGenerate (templateUrl,template,to,name) {
     //ds init webpack(template) testname(name)
     const spinner = ora('下载模板ing...')  
     spinner.start()//显示加载状态
+
+    if (exists(template)) rm(template)  //是否存在该模板，存在就删除
       
-    download(template, name, { clone:true }, err => {
+    download(templateUrl,template, { clone:true }, err => {
       spinner.stop() //隐藏加载状态
       //如果有错误，打印错误日志
       if (err) logger.fatal('拉取远程仓库失败 ' + template + ': ' + err.message.trim())
       //渲染模板
-      generate(name, tmp, to, err => {
+      generate(name, template, to, err => {
         if (err) logger.fatal(err)
-        console.log()
         logger.success('生成', name)
       })
     })

@@ -50,7 +50,7 @@ export default function(...args) {
             checkVersion(()=> {
                 //例子ds init webpack testname
                 const gitTemplateUrl = `https://git.datatub.com:Uranus/ds-cli-${template}-template#master`
-                downloadAndGenerate(gitTemplateUrl,name)
+                downloadAndGenerate(gitTemplateUrl,template,to,name)
             });
         }
     }
