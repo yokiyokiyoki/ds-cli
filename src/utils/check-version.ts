@@ -35,7 +35,7 @@ export default async (done)=> {
             console.log();
         }
     }
-    console.log(res,res.data);
+    // console.log(res,res.data);
     // 执行回调
     done();
 };
