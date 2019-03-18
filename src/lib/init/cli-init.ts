@@ -16,7 +16,7 @@ export default function(...args) {
     // 如果在当前目录下构建项目,当前目录名为项目构建目录名，否则是当前目录下的子目录【rawName】为项目构建目录名
     // process.cwd()是当前工作目录
     const name = inPlace ? path.relative('../', process.cwd()) : rawName;
-    console.log(args,inPlace,args[0],args[1]);
+
     if (inPlace || exists(to)) {
         inquirer.prompt([{
             type: 'confirm',
@@ -48,7 +48,7 @@ export default function(...args) {
         } else {
             checkVersion(()=> {
                 // 例子ds init webpack testname
-                const gitTemplateUrl = `https://git.datatub.com:Uranus/ds-cli-${template}-template#master`;
+                const gitTemplateUrl = `direct:https://git.datatub.com/Uranus/ds-cli-${template}-template#master`;
                 downloadAndGenerate(gitTemplateUrl,template,to,name);
             });
         }

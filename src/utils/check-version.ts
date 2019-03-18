@@ -9,7 +9,7 @@ const path=require('path');
 // 动态执行
 const packageConfig = require('../package.json');
 
-console.log(packageConfig);
+// console.log(packageConfig);
 const chalk = require('chalk');
 import tool from './tool';
 
