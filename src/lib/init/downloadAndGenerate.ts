@@ -5,8 +5,7 @@ const exists = require('fs').existsSync;
 const ora = require('ora');
 const rm = require('rimraf').sync;
 
-const path=require('path')
-
+const path=require('path');
 
 // 获取用户根目录，拼接一下用来存储下载的模板，然后用构建工具生成我们想要的模板
 const home=require('user-home');
@@ -19,7 +18,7 @@ export default function downloadAndGenerate(templateUrl,template,to,name) {
     const spinner = ora('正在努力下载模板ing...');
     spinner.start();// 显示加载状态
 
-    const tmp = path.join(home, '.ds-templates', template.replace(/[\/:]/g, '-'))  //远程模板下载到本地的路径,是~/.ds-template/..,这就是源文件
+    const tmp = path.join(home, '.ds-templates', template.replace(/[\/:]/g, '-'));  // 远程模板下载到本地的路径,是~/.ds-template/..,这就是源文件
 
     if (exists(tmp)) rm(tmp);  // 是否存在该模板，存在就删除
 

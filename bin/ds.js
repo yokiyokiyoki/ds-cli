@@ -594,25 +594,25 @@
 
     var download = require('download-git-repo'); // 用于下载远程仓库至本地 支持GitHub、GitLab、Bitbucket
     var exists$1 = require('fs').existsSync;
-    var path$4 = require('path'); // node自带的path模块，用于拼接路径
     var ora = require('ora');
     var rm = require('rimraf').sync;
-    var chalk$4 = require('chalk');
+    var path$4 = require('path');
     // 获取用户根目录，拼接一下用来存储下载的模板，然后用构建工具生成我们想要的模板
     var home = require('user-home');
     function downloadAndGenerate(templateUrl, template, to, name) {
         // ds init webpack(template) testname(name)
         var spinner = ora('正在努力下载模板ing...');
         spinner.start(); // 显示加载状态
-        if (exists$1(template))
-            rm(template); // 是否存在该模板，存在就删除
-        download(templateUrl, template, { clone: true }, function (err) {
+        var tmp = path$4.join(home, '.ds-templates', template.replace(/[\/:]/g, '-')); // 远程模板下载到本地的路径,是~/.ds-template/..,这就是源文件
+        if (exists$1(tmp))
+            rm(tmp); // 是否存在该模板，存在就删除
+        download(templateUrl, tmp, { clone: true }, function (err) {
             spinner.stop(); // 回调完了隐藏加载状态
             // 如果有错误，打印错误日志
             if (err)
                 logger.fatal('拉取远程仓库失败 ' + template + ': ' + err.message.trim());
             // 渲染模板
-            generate(name, template, to, function (err) {
+            generate(name, tmp, to, function (err) {
                 if (err)
                     logger.fatal(err);
                 logger.success("\u751F\u6210" + name + "\u6587\u4EF6\u5939");
@@ -677,7 +677,7 @@
         }
     }
 
-    var chalk$5 = require('chalk');
+    var chalk$4 = require('chalk');
     var cmd$1 = require('commander');
     var config = require('../package.json');
     var command = {
