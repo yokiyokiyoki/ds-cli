@@ -2,11 +2,11 @@ const chalk = require('chalk');
 const format = require('util').format;
 
 /**
- * Prefix.
+ * 加个前缀好识别
  */
 
 const prefix = 'ds-cli';
-const sep = chalk.gray('·');
+const sep = chalk.gray('······');
 
 /**
  * 正常

@@ -10,6 +10,6 @@ export default function evaluate(exp, data) {
   try {
     return fn(data);
   } catch (e) {
-    console.error(chalk.red('执行meta的filter的错误' + exp));
+    console.error(chalk.red('执行meta的filter字段时候的错误' + exp));
   }
 }

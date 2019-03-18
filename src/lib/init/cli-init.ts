@@ -40,7 +40,7 @@ export default function(...args) {
             if(path.exists(templatePath)) {
                 generate(name, templatePath, to, err => {
                     if (err) logger.fatal(err);
-                    logger.success(`生成${name}`);
+                    logger.success(`生成${name}文件夹`);
                 });
             } else {
                 logger.fatal(`本地模板${template}没有找到`);

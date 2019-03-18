@@ -14,7 +14,7 @@ import generate from './generate';
 
 export default function downloadAndGenerate(templateUrl,template,to,name) {
     // ds init webpack(template) testname(name)
-    const spinner = ora('下载模板ing...');
+    const spinner = ora('正在努力下载模板ing...');
     spinner.start();// 显示加载状态
 
     if (exists(template)) rm(template);  // 是否存在该模板，存在就删除
@@ -26,7 +26,7 @@ export default function downloadAndGenerate(templateUrl,template,to,name) {
       // 渲染模板
       generate(name, template, to, err => {
         if (err) logger.fatal(err);
-        logger.success('生成', name);
+        logger.success(`生成${name}文件夹`);
       });
     });
 }
