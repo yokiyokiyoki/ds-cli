@@ -24,7 +24,7 @@ cmd
   .description('初始化组件模板')
   .action((...args) => exec('init', ...args));
 
-  cmd
+cmd
   .command('list')
   .description('查看线上组件模板')
   .action((...args) => exec('list', ...args));
