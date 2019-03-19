@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const cmd = require('commander');
 const config = require('../package.json');
 

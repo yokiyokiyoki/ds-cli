@@ -10,6 +10,8 @@ const path=require('path');
 // 获取用户根目录，拼接一下用来存储下载的模板，然后用构建工具生成我们想要的模板
 const home=require('user-home');
 
+const symbols = require("log-symbols");
+
 import logger from '../../utils/logger';
 import generate from './generate';
 

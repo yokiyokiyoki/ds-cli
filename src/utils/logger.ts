@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const format = require('util').format;
 
+const logSymbols = require("log-symbols");
 /**
  * 加个前缀好识别
  */
@@ -16,7 +17,7 @@ const sep = chalk.gray('······');
 
 function log(...args) {
   const msg = format.apply(format, args);
-  console.log(chalk.white(prefix), sep, msg);
+  console.log(logSymbols.info,chalk.white(prefix), sep, msg);
 }
 
 /**
@@ -28,7 +29,7 @@ function log(...args) {
 function fatal(...args) {
   if (args[0] instanceof Error) args[0] = args[0].message.trim();
   const msg = format.apply(format, args);
-  console.error(chalk.red(prefix), sep, msg);
+  console.error(logSymbols.error,chalk.red(prefix), sep, msg);
   // 退出当前进程
   process.exit(1);
 }
@@ -41,7 +42,7 @@ function fatal(...args) {
 
 function success(...args) {
   const msg = format.apply(format, args);
-  console.log(chalk.green(prefix), sep, msg);
+  console.log(logSymbols.success,chalk.green(prefix), sep, msg);
 }
 
 const logger= {

@@ -139,7 +139,8 @@ function logMessage(message, data) {
     if (!message) return;  // 没有message直接退出函数
     render(message, data, (err, res) => {
       if (err) {
-        console.error('\n模板渲染完成出错 ' + err.message.trim());  // 渲染错误打印错误信息
+          // 渲染错误打印错误信息
+        console.error('\n模板渲染完成的时候出错 ' + err.message.trim());  
       } else {
           // 渲染成功打印最终渲染的结果
         console.log('\n' + res.split(/\r?\n/g).map(line => '   ' + line).join('\n'));

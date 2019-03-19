@@ -11,11 +11,14 @@ const packageConfig = require('../package.json');
 
 // console.log(packageConfig);
 const chalk = require('chalk');
+
+const logSymbols = require("log-symbols");
+
 import tool from './tool';
 
 export default async (done)=> {
     if (!semver.satisfies(process.version, packageConfig.engines.node)) {
-        return console.log(chalk.red(
+        return console.log(logSymbols.error,chalk.red(
             ' 你的node版本必须 >=' + packageConfig.engines.node + '.x 才能使用ds-cli'
         ));
     }
@@ -27,15 +30,14 @@ export default async (done)=> {
     if(res.status===200) {
         const latestVersion = res.data['dist-tags'].latest;
         const localVersion = packageConfig.version;
+        //比较版本，如果本地版本比线上版本小，提示一下
         if (semver.lt(localVersion, latestVersion)) {
-            console.log(chalk.yellow('报告!有一个新的ds-cli版本'));
-            console.log();
-            console.log('现在最新的是:' + chalk.green(latestVersion));
-            console.log('你下载的是:' + chalk.red(localVersion));
-            console.log();
+            console.log(logSymbols.info,chalk.yellow('报告!有一个新的ds-cli版本'));
+            console.log(logSymbols.success,'现在最新的是:' + chalk.green(latestVersion));
+            console.log(logSymbols.warning,'你下载的是:' + chalk.red(localVersion));
         }
     }
-    // console.log(res,res.data);
+
     // 执行回调
     done();
 };
