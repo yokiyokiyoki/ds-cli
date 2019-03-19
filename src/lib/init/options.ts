@@ -55,6 +55,7 @@ function getMetadata(dir) {
 /**
  * 向meta配置对象中添加一下默认字段
  * 设置默认字段(如name,author)
+ * 主要是针对default字段
  *
  * @param {Object} opts
  * @param {String} key
