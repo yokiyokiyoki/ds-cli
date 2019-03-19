@@ -17,9 +17,10 @@ function exec(type, ...args) {
 cmd
   .usage('<command>')
   .version(config.version)
-  .description('欢迎使用开发工具');
+  .description('欢迎使用ds-cli');
 
 cmd
+  .usage('init <template> <app-name>')
   .command('init')
   .description('初始化组件模板')
   .action((...args) => exec('init', ...args));
