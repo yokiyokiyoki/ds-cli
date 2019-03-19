@@ -44,8 +44,8 @@ export default {
   plugins: [
     typescript(),
     commonjs({
-    include: "node_modules/**",
-    extensions: ['.js', '.ts']
+      include: "node_modules/**",
+      extensions: ['.js', '.ts']
     }),
     uglify()
   ],
