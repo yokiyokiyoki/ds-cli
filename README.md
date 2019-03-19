@@ -1,6 +1,6 @@
 # 介绍
 
-- 各种模板的脚手架工具
+- 基于typescript和rollup的脚手架工具
 
 # 工具说明
 
@@ -19,4 +19,5 @@
 # 安装
 
 - npm i @datastory/ds-cli -g 或者 yarn global add ds-cli
-- ds init [文件名]
+- ds init <template-name> <app-name>
+- ds list
