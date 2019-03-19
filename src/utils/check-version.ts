@@ -12,7 +12,7 @@ const packageConfig = require('../package.json');
 // console.log(packageConfig);
 const chalk = require('chalk');
 
-const logSymbols = require("log-symbols");
+const logSymbols = require('log-symbols');
 
 import tool from './tool';
 
@@ -30,7 +30,7 @@ export default async (done)=> {
     if(res.status===200) {
         const latestVersion = res.data['dist-tags'].latest;
         const localVersion = packageConfig.version;
-        //比较版本，如果本地版本比线上版本小，提示一下
+        // 比较版本，如果本地版本比线上版本小，提示一下
         if (semver.lt(localVersion, latestVersion)) {
             console.log(logSymbols.info,chalk.yellow('报告!有一个新的ds-cli版本'));
             console.log(logSymbols.success,'现在最新的是:' + chalk.green(latestVersion));

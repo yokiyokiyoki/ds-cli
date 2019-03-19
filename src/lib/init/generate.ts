@@ -140,7 +140,7 @@ function logMessage(message, data) {
     render(message, data, (err, res) => {
       if (err) {
           // 渲染错误打印错误信息
-        console.error('\n模板渲染完成的时候出错 ' + err.message.trim());  
+        console.error('\n模板渲染完成的时候出错 ' + err.message.trim());
       } else {
           // 渲染成功打印最终渲染的结果
         console.log('\n' + res.split(/\r?\n/g).map(line => '   ' + line).join('\n'));

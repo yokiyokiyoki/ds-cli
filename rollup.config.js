@@ -18,9 +18,8 @@ export default {
   ],
   external: [
     "commander",
-    'colors',
+    "log-symbols",
     'rimraf',
-    'archiver',
     'ora',
     'chalk',
     'child_process',
@@ -34,7 +33,13 @@ export default {
     'form-data',
     'inquirer',
     'querystring',
-    'download-git-repo'
+    'download-git-repo',
+    "minimatch",
+    "ramda",
+    "semver",
+    "minimatch",
+    "metalsmith",
+    "handlebars"
   ],
   plugins: [
     typescript(),
@@ -42,6 +47,6 @@ export default {
     include: "node_modules/**",
     extensions: ['.js', '.ts']
     }),
-    // uglify()
+    uglify()
   ],
 };

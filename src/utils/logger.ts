@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const format = require('util').format;
 
-const logSymbols = require("log-symbols");
+const logSymbols = require('log-symbols');
 /**
  * 加个前缀好识别
  */

@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const logSymbols = require("log-symbols");
+const logSymbols = require('log-symbols');
 
 /**
  * Evaluate an expression in meta.json in the context of
