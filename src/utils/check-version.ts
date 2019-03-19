@@ -5,7 +5,6 @@
 
 // 版本号处理
 const semver=require('semver');
-const path=require('path');
 // 动态执行
 const packageConfig = require('../package.json');
 
