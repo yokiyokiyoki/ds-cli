@@ -21,3 +21,11 @@
 - npm i @datastory/ds-cli -g 或者 yarn global add ds-cli
 - ds init <template-name> <app-name>
 - ds list
+
+# 模板
+
+### 要求
+
+- 文件目录必须含有template文件夹，并且所需模板文件放在改目录下
+- 文件名命名规范是ds-cli-‘name’-template，方便脚手架拉取
+- 可用meta.js提高自定义化
