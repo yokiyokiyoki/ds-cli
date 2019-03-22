@@ -60,8 +60,6 @@ $ ds init [template-name] <app-name>
 $ ds list
 ```
 
-
-
 ## 感谢
 
 - [vue-cli](https://github.com/vuejs/vue-cli)
