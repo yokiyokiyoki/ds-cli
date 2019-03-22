@@ -35,6 +35,8 @@ export default async (done)=> {
             console.log(logSymbols.success,'现在最新的是:' + chalk.green(latestVersion));
             console.log(logSymbols.warning,'你下载的是:' + chalk.red(localVersion));
         }
+    }else{
+        console.log(logSymbols.error,`获取线上仓库失败${res.data}`); 
     }
 
     // 执行回调
