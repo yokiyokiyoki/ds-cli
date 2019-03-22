@@ -2,19 +2,6 @@
 
 - 基于typescript和rollup的脚手架工具
 
-# 工具说明
-
-- commander.js，可以自动的解析命令和参数，用于处理用户输入的命令。
-- download-git-repo，下载并提取 git 仓库，用于下载项目模板。
-- Inquirer.js，通用的命令行用户界面集合，用于和用户进行交互。
-- handlebars.js，模板引擎，将用户提交的信息动态填充到文件中。
-- ora，下载过程久的话，可以用于显示下载中的动画效果。
-- chalk，可以给终端的字体加上颜色。
-- log-symbols，可以在终端上显示出 √ 或 × 等的图标。
-
-# 处理命令行
-
-- package.json 中的 bin 字段可以定义命令名和关联的执行文件
 
 # 安装
 
@@ -29,3 +16,56 @@
 - 文件目录必须含有template文件夹，并且所需模板文件放在改目录下
 - 文件名命名规范是ds-cli-‘name’-template，方便脚手架拉取
 - 可用meta.js提高自定义程度
+
+
+<h2 align="center">ds-cli</h2>
+
+# 目录
+
+- [生态](#生态)
+- [快速入门](#快速入门)
+  - [安装](#安装)
+  - [用法](#用法)
+- [感谢](#感谢)
+- [License](#license)
+
+## 生态
+
+- doc：基于vuepress开发文档
+- lib：基于typescript和rollup开发库
+
+
+## 快速入门
+
+### 安装
+
+```bash
+$ npm i @datastory/ds-cli -g               # install cli
+```
+
+目录说明:
+
+```
+├─ bin             
+├─ main.ts         //入口文件
+├─ src
+│  ├─ lib          //详细命令入口目录
+│  ├─ utils        //工具库
+```
+
+### 用法
+
+```bash
+$ ds init [template-name] <app-name>            
+$ ds list
+```
+
+
+
+## 感谢
+
+- [vue-cli](https://github.com/vuejs/vue-cli)
+
+## License
+
+- [MIT](https://opensource.org/licenses/MIT)
