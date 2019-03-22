@@ -11,13 +11,13 @@ export default async function(...args) {
         method: 'GET'
         }
     );
-    let list
+    let list;
     if(res.status===200) {
-        list=res.data.filter((item)=>{
-            return item.name.includes('ds-cli')&&item.name.includes('template')
-        }).map((item)=>{
-            return item.name
-        })
+        list=res.data.filter((item)=> {
+            return item.name.includes('ds-cli')&&item.name.includes('template');
+        }).map((item)=> {
+            return item.name;
+        });
         console.log(res.data,list);
     } else {
         console.log(logSymbols.error,`获取仓库列表失败${res.data}`);
