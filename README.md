@@ -13,9 +13,9 @@
 
 ### 要求
 
-- 文件目录必须含有template文件夹，并且所需模板文件放在改目录下
+- 文件目录必须含有template文件夹，并且所需模板文件放在该目录下
 - 文件名命名规范是ds-cli-‘name’-template，方便脚手架拉取
-- 可用meta.js提高自定义程度
+- 可用meta.js提高自定义程度（所谓动态化模板）
 
 
 <h2 align="center">ds-cli</h2>
