@@ -21,6 +21,8 @@
 
 - doc：基于vuepress开发文档
 - lib：基于typescript和rollup开发库
+- [前端如何搭建一个成熟的脚手架](https://juejin.im/post/5c98dc71e51d4501806d0a98)
+- [前端如何搭建一个简单的脚手架](https://juejin.im/post/5c8f9dbfe51d45279e268e3b)
 
 
 ## 快速入门
