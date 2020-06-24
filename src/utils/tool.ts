@@ -1,8 +1,8 @@
 // 开一个子进程执行
-import { exec } from "child_process";
-import rm from "rimraf";
-import inquirer, { Answers, Questions } from "inquirer";
-import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
+import { exec } from 'child_process';
+import rm from 'rimraf';
+import inquirer, { Answers, Questions } from 'inquirer';
+import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 class Tool {
   constructor() {}
@@ -15,7 +15,7 @@ class Tool {
     return new Promise((resolve, reject) => {
       rm(path, (err) => {
         if (err) {
-          reject({ type: "remove", msg: err });
+          reject({ type: 'remove', msg: err });
         } else {
           resolve();
         }
@@ -32,7 +32,7 @@ class Tool {
     return new Promise((resolve, reject) => {
       exec(cmd, (err, stdout, stderr) => {
         if (err) {
-          reject({ type: "shell", msg: stdout + stderr });
+          reject({ type: 'shell', msg: stdout + stderr });
         } else {
           resolve(stdout);
         }
@@ -65,7 +65,7 @@ class Tool {
           resolve(response);
         })
         .catch((err) => {
-          reject({ type: "ajax请求", msg: err });
+          reject({ type: 'ajax请求', msg: err });
         });
     });
   }
