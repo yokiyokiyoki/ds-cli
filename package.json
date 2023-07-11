@@ -20,7 +20,7 @@
     "ramda": "^0.26.1",
     "read-metadata": "^1.0.0",
     "rimraf": "^2.6.3",
-    "semver": "^5.6.0",
+    "semver": "^5.7.2",
     "validate-npm-package-name": "^3.0.0"
   },
   "bin": {
